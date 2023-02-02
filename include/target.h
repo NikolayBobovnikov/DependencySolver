@@ -1,8 +1,8 @@
+#include <exception>
 #include <functional>
 #include <memory>
-#include <vector>
 #include <set>
-#include <exception>
+#include <vector>
 
 struct Target {
   Target() = delete;
@@ -20,6 +20,5 @@ public:
   std::unique_ptr<Target> CreateTarget(size_t id);
 
 private:
-
   std::set<size_t> tasks;
 };
