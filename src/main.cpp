@@ -2,7 +2,7 @@
 #include "target.h"
 
 int main() {
-    auto t = TargetHelpers::CreateTest(0);
-    t->task();
-    
+  TargetManager m;
+  auto t = m.CreateTarget(0);
+  t->task();
 }
