@@ -1,4 +1,4 @@
-#include "target_manager.h"
+#include "target_factory.h"
 
 #include <exception>
 #include <iostream>

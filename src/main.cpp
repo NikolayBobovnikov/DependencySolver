@@ -1,6 +1,6 @@
 #include "builder.h"
 #include "buildgraph.h"
-#include "target_manager.h"
+#include "target_factory.h"
 
 int
 main() {
