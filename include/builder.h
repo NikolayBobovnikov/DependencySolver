@@ -1,5 +1,8 @@
-#include "buildgraph.h"
+#pragma once
+
 #include <cstddef>
+
+#include "buildgraph.h"
 
 /*
 It is also possible to check whether a given directed graph is a DAG in linear
@@ -13,7 +16,7 @@ meeting an error condition.[17]
 */
 
 class Builder {
-public:
+ public:
   explicit Builder(size_t num_threads);
 
   void execute(const BuildGraph &build_graph, size_t target_id);

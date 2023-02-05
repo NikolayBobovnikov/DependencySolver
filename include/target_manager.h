@@ -1,11 +1,16 @@
+#pragma once
+
 #include "target.h"
 
-class TargetManager {
- public:
-  TargetManager();
-  std::unique_ptr<Target> CreateTarget(size_t id, std::function<void()> task);
-  std::unique_ptr<Target> CreateTarget(size_t id);
+/// @brief Factory for build targets and ID management.
+class TargetFactory {
+public:
+  Target CreateTarget(size_t id, std::function<void()> task);
 
- private:
-  std::set<size_t> tasks;
+  Target CreateTarget(size_t id);
+
+  std::vector<Target> CreateTargets(size_t count = 0);
+
+private:
+  std::set<size_t> _task_ids;
 };
