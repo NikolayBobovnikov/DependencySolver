@@ -1,7 +1,8 @@
 #include "builder.h"
-#include "target.h"
+#include "target_manager.h"
 
-int main() {
+int
+main() {
   TargetManager m;
   auto t = m.CreateTarget(0);
   t->task();
