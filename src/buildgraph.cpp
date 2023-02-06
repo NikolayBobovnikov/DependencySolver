@@ -2,7 +2,6 @@
 
 #include <stdexcept>
 #include <string>
-#include <format>
 
 BuildGraph::BuildGraph(const std::vector<Target> &targets) : _targets(targets) {
   _dependencies.reserve(targets.size());
@@ -10,6 +9,11 @@ BuildGraph::BuildGraph(const std::vector<Target> &targets) : _targets(targets) {
 
 BuildGraph::BuildGraph(std::vector<Target> &&targets) : _targets(std::move(targets)) {
   _dependencies.reserve(_targets.size());
+}
+
+size_t
+BuildGraph::size() const {
+  return _targets.size();
 }
 
 void
@@ -21,15 +25,21 @@ BuildGraph::set_dependency(size_t target_id, size_t dependency_id) {
 }
 
 void
-BuildGraph::set_dependencies(const std::vector<std::pair<size_t, size_t>>& dependencies) {
-  for (const auto& [target, dependency] : dependencies) {
+BuildGraph::set_dependencies(const std::vector<std::pair<size_t, size_t>> &dependencies) {
+  for (const auto &[target, dependency] : dependencies) {
     set_dependency(target, dependency);
   }
+}
+
+const std::vector<size_t> &
+BuildGraph::get_dependencies(size_t target_id) const {
+  _validate_target_id(target_id);
+  return _dependencies[target_id];
 }
 
 void
 BuildGraph::_validate_target_id(size_t id) const {
   if (id > _targets.size()) {
-    throw std::invalid_argument(std::format("Target id {} does not exist.", id));
+    throw std::invalid_argument(std::string("Target id").append(std::to_string(id)).append(" does not exist."));
   }
 }

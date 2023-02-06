@@ -27,7 +27,7 @@ std::vector<Target>
 TargetFactory::CreateTargets(size_t count) {
   std::vector<Target> result;
   result.reserve(count);
-  for (size_t id = 1; id <= count; ++id) {
+  for (size_t id = 0; id < count; ++id) {
     result.push_back(CreateTarget(id));
   }
   return result;

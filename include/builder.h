@@ -1,7 +1,5 @@
 #pragma once
 
-#include <cstddef>
-
 #include "buildgraph.h"
 
 /*
@@ -19,7 +17,12 @@ class Builder {
 public:
   explicit Builder(size_t num_threads);
 
-  void execute(const BuildGraph &build_graph, size_t target_id);
+  void execute(const BuildGraph &build_graph, size_t target_id) const;
 
-  void dfs(const BuildGraph &build_graph, size_t target_id);
+  void run_dfs(const BuildGraph &build_graph, size_t target_id) const;
+
+private:
+  enum class DFS_States : uint8_t { not_visited, visiting, visited };
+
+  void _dfs(const BuildGraph &build_graph, size_t target_id, std::vector<DFS_States> &states) const;
 };

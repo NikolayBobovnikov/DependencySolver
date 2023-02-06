@@ -28,6 +28,8 @@ public:
   /// @note Pre-constructed collection of targets is required for construction of the BuildGraph object.
   BuildGraph() = delete;
 
+  size_t size() const;
+
   /// @brief Set single dependency for specified target.
   /// @param target_id
   /// @param dependency_id
@@ -36,7 +38,9 @@ public:
 
   /// @brief
   /// @param dependencies
-  void set_dependencies(const std::vector<std::pair<size_t, size_t>>& dependencies);
+  void set_dependencies(const std::vector<std::pair<size_t, size_t>> &dependencies);
+
+  const std::vector<size_t> &get_dependencies(size_t target_id) const;
 
 private:
   void _validate_target_id(size_t id) const;
