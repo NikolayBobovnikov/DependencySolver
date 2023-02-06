@@ -2,6 +2,7 @@
 
 #include <exception>
 #include <iostream>
+#include <string>
 
 Target
 TargetFactory::CreateTarget(size_t id, std::function<void()> task) {

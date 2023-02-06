@@ -36,12 +36,11 @@ public:
 
   /// @brief
   /// @param dependencies
-  void set_dependencies(std::vector<std::pair<size_t, size_t>> dependencies);
+  void set_dependencies(const std::vector<std::pair<size_t, size_t>>& dependencies);
 
 private:
   void _validate_target_id(size_t id) const;
   std::vector<Target> _targets;
 
-  ///
   std::vector<std::vector<size_t>> _dependencies;
 };
