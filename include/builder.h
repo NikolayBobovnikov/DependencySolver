@@ -16,8 +16,10 @@ meeting an error condition.[17]
 */
 
 class Builder {
- public:
+public:
   explicit Builder(size_t num_threads);
 
   void execute(const BuildGraph &build_graph, size_t target_id);
+
+  void dfs(const BuildGraph &build_graph, size_t target_id);
 };
