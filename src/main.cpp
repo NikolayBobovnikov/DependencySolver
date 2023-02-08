@@ -16,10 +16,11 @@ main() {
 
   g.set_dependencies({{1, 2}, {2, 3}, {1, 3}, {2, 0}});
 
-  Builder b = Builder(1);
+  const size_t threads_number = 1;
+  Builder b = Builder(threads_number);
 
   try {
-    b.top_sort(g, 1);
+    b.execute(g, 1);
   } catch (std::exception &e) {
     std::cout << e.what() << std::endl;
   }

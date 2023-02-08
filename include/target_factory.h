@@ -6,8 +6,9 @@
 class TargetFactory {
 public:
   Target CreateTarget(size_t id, std::function<void()> task);
-
   Target CreateTarget(size_t id);
+  TargetFactory() = default;
+  TargetFactory(const TargetFactory &) = delete;
 
   std::vector<Target> CreateTargets(size_t count = 0);
 

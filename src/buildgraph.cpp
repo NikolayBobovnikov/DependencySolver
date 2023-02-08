@@ -27,6 +27,15 @@ BuildGraph::set_dependencies(const std::vector<std::pair<size_t, size_t>> &depen
   }
 }
 
+void
+BuildGraph::set_dependencies(const std::vector<std::pair<size_t, std::vector<size_t>>> &dependencies) {
+  for (const auto &[target, target_dependencies] : dependencies) {
+    for (auto dependency : target_dependencies) {
+      set_dependency(target, dependency);
+    }
+  }
+}
+
 const std::vector<size_t> &
 BuildGraph::get_dependencies(size_t target_id) const {
   _validate_target_id(target_id);

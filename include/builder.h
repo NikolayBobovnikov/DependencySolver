@@ -19,18 +19,14 @@ public:
 
   void execute(const BuildGraph &build_graph, size_t target_id) const;
 
-  void top_sort(const BuildGraph &build_graph, size_t target_id) const;
-
 private:
   /// <summary>
   /// Enumeration of the node states during DFS.
   /// </summary>
   enum class DFS_States : uint8_t { not_visited, visiting, visited };
 
-  void _dfs(const BuildGraph &build_graph,
-            size_t target_id,
-            std::vector<DFS_States> &states,
-            std::vector<size_t> &top_sort,
-            size_t& top_sort_index) const;
+  std::stack<size_t> _top_sort(const BuildGraph &build_graph, size_t target_id) const;
 
+  void _dfs(const BuildGraph &build_graph, size_t target_id, std::vector<DFS_States> &states,
+            std::stack<size_t> &top_sort) const;
 };

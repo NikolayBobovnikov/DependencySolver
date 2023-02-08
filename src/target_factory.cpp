@@ -10,7 +10,9 @@ TargetFactory::CreateTarget(size_t id, std::function<void()> task) {
     throw std::invalid_argument(std::string("Target id").append(std::to_string(id)).append("already exists."));
   }
 
-  Target target = Target(id, task);
+  Target target = Target();
+  target.id = id;
+  target.task = task;
   _task_ids.insert(id);
 
   return target;
