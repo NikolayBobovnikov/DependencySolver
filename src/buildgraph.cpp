@@ -3,13 +3,9 @@
 #include <stdexcept>
 #include <string>
 
-BuildGraph::BuildGraph(const std::vector<Target> &targets) : _targets(targets) {
-  _dependencies.reserve(targets.size());
-}
+BuildGraph::BuildGraph(const std::vector<Target> &targets) : _targets(targets), _dependencies(_targets.size()) {}
 
-BuildGraph::BuildGraph(std::vector<Target> &&targets) : _targets(std::move(targets)) {
-  _dependencies.reserve(_targets.size());
-}
+BuildGraph::BuildGraph(std::vector<Target> &&targets) : _targets(std::move(targets)), _dependencies(_targets.size()) {}
 
 size_t
 BuildGraph::size() const {

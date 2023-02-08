@@ -14,12 +14,12 @@ main() {
 
   BuildGraph g = BuildGraph(std::move(targets));
 
-  g.set_dependencies({{1, 2}, {2, 3}, {1, 3}, {3, 1}});
+  g.set_dependencies({{1, 2}, {2, 3}, {1, 3}, {2, 0}});
 
   Builder b = Builder(1);
 
   try {
-    b.run_dfs(g, 1);
+    b.top_sort(g, 1);
   } catch (std::exception &e) {
     std::cout << e.what() << std::endl;
   }
