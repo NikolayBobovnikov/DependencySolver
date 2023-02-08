@@ -7,22 +7,21 @@ Builder::Builder(size_t num_threads) {}
 
 void
 Builder::execute(const BuildGraph &build_graph, size_t target_id) const {
-  std::stack<size_t> top_sorting = _top_sort(build_graph, target_id);
+  auto top_sorting = _top_sort(build_graph, target_id);
 
   std::cout << "Topological ordering: " << std::endl;
-  while (!top_sorting.empty()) {
-    std::cout << "Target id " + std::to_string(top_sorting.top()) << std::endl;
-    top_sorting.pop();
+  for (auto id : top_sorting) {
+    std::cout << "Target id " + std::to_string(id) << std::endl;
   }
 }
 
-std::stack<size_t>
+std::vector<size_t>
 Builder::_top_sort(const BuildGraph &build_graph, size_t target_id) const {
   // states for DFS
   std::vector<Builder::DFS_States> states(build_graph.size(), DFS_States::not_visited);
 
   // topological sorting
-  std::stack<size_t> top_sorting;
+  std::vector<size_t> top_sorting;
 
   _dfs(build_graph, target_id, states, top_sorting);
 
@@ -31,7 +30,7 @@ Builder::_top_sort(const BuildGraph &build_graph, size_t target_id) const {
 
 void
 Builder::_dfs(const BuildGraph &build_graph, size_t target_id, std::vector<DFS_States> &states,
-              std::stack<size_t> &top_sort_ordering) const {
+              std::vector<size_t> &top_sort_ordering) const {
   if (target_id >= build_graph.size()) {
     throw std::runtime_error("Target id" + std::to_string(target_id) + " does not exist.");
   }
@@ -54,5 +53,5 @@ Builder::_dfs(const BuildGraph &build_graph, size_t target_id, std::vector<DFS_S
   states[target_id] = DFS_States::visited;
 
   // use time of exit for ordering
-  top_sort_ordering.push(target_id);
+  top_sort_ordering.push_back(target_id);
 }

@@ -25,8 +25,8 @@ private:
   /// </summary>
   enum class DFS_States : uint8_t { not_visited, visiting, visited };
 
-  std::stack<size_t> _top_sort(const BuildGraph &build_graph, size_t target_id) const;
+  std::vector<size_t> _top_sort(const BuildGraph &build_graph, size_t target_id) const;
 
   void _dfs(const BuildGraph &build_graph, size_t target_id, std::vector<DFS_States> &states,
-            std::stack<size_t> &top_sort) const;
+            std::vector<size_t> &top_sort) const;
 };
